@@ -1,0 +1,304 @@
+Bookmark 
+
+
+<style>
+  .btnRemove{padding: 4px 0;text-align: center;background: #035096;color: white;font-weight: 600;border-radius: 8px;cursor: pointer;font-size: 12px;}
+  .btnRemove:hover,.claearAll:hover {background: #000;color: white;font-weight: 700;border-radius: 150px 0px 200px 0; margin: auto 20px; box-shadow: 0 0 5px rgba(0,0,0,0.15);backdrop-filter: blur(10px);}
+  .notice{background: #860a0a;color: white;padding: 10px 18px;border-radius: 8px;text-align:right;margin: 8px 10px 5px 10px;}
+  .iconsvgbookmark svg {width: 60px;height: 60px;} 
+  
+  .showBookmark{display: grid;grid-template-columns: repeat(auto-fill,minmax(105px,1fr));
+ margin: 10px 10px;
+   gap:10px}
+   @media only screen and (min-width:480px) {
+  .clearAll,.clear-book{font-size: 25px;}
+  .showBookmark{display:    grid;grid-template-columns:  repeat(auto-fill,minmax(225px,1fr));
+ margin: 10px 10px;
+   gap:10px
+  }
+div.tt {font-size:18 !important;}
+     article div.limit .typez,
+  article div.limit div.bt{font-size:20px !important;} 
+.popup {max-width:600px;
+    height:375px;}     
+}
+
+  .showBookmark article {display: grid;grid-template-rows: 1fr auto;grid-gap:15px;}
+  article div.limit{position: relative;border-radius: 3px;overflow:hidden;aspect-ratio: 3/4;}
+
+  .bsx:hover div.limit img{scale:1.2;}
+  article div.limit .typez{position: absolute;bottom: 4px;z-index: 1;right: 4px;background: rgba(255,255,255,0.5); box-shadow: 0 0 5px rgba(0,0,0,0.15);backdrop-filter: blur(10px);color:#fff;padding: 0 6px;border-radius: 4px;font-size:12px;font-weight: bold;}
+  
+ article div.limit div.bt{position: absolute;bottom: 25px;z-index: 1;left: 1px;background:#a60000; box-shadow: 0 0 5px rgba(0,0,0,0.15);backdrop-filter: blur(10px);color:#fff;padding: 0 6px;border-radius: 4px;font-size:12px;font-weight: bold;}
+  article div.limit div.ply{position: absolute;left: 0;right: 0;z-index: 1;bottom: 0;top: 0;}
+  
+  article div.limit div.ply:before{content: '';position: absolute;top: 0;bottom: 0;right: 0;left: 0;background: #000000a6;z-index: -1;display: none;}
+  
+  .bsx:hover div.limit div.ply:before,.bsx:hover div.limit div.ply svg{display:block !important;}
+  
+  article div.limit div.ply svg{display: block;margin: 0 auto;fill: white;height: 100%;width: 30px;display: none;}
+  
+  article div.limit img{display: block;position: relative;z-index: 0;width: 100%;border-radius: inherit;}
+ 
+  div.tt{text-align: center;margin: 8px 0;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;font-size:16px;}
+  div.tt h2{display: none;}
+  </style>
+<style>
+  .popup-bookmark {
+  --title-popup-bookmark:#fff;
+  --message-popup-bookmark:#a0a0a0;
+  --bg-popup-bookmark:#2f303e;
+  overflow: hidden;
+  position: fixed;
+  width:100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  text-align: left;
+  border-radius: 0.5rem;
+  max-width: 290px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    z-index:9999;
+}
+.header-bookmark {
+  padding: 1.25rem 1rem 1rem 1rem;
+  background-color:var(--bg-popup-bookmark);
+}
+
+.image-bookmark {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #b9041a;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+}
+
+.image-bookmark svg {
+  color: #fff;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.content-bookmark {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.title-bookmark {
+  color: var(--title-popup-bookmark);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.message-bookmark {
+  margin-top: 0.5rem;
+  color:var(--message-popup-bookmark);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.actions-bookmark {
+  margin: 0.75rem 1rem;
+}
+
+.confirm-delete {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  background-color: #DC2626;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  border-color: transparent;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.cancel-delete {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+  .timer {color:#fff;}
+  
+  .clearAll{font-size: 16px;color: white;background:#dc143c;padding: 2px 5px;border-radius: 4px;cursor: pointer;}
+  
+  .clear-book{font-size: 16px;color: white;background:#4846a4;padding: 2px 12px;border-radius: 4px;cursor: pointer;display:inline-block;}
+  
+</style>         
+<div class="alert alert-additional-content">
+  <div class="alert-box-icon">
+    <svg aria-hidden="true" class="alert-icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path></svg>
+  </div>
+  <div class="alert-content"><h2 class="alert-title">List<span> Bookmark</span></h2>
+<svg aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewbox="0 0 24 24">
+                <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+<div style='font-size:clamp(12px,15px,18px);' class="alert-description">
+ Limit menyimpan daftar Novel dan Manga hanya 30 judul. Daftar Novel dan Manga disimpan di browser yang sedang kalian gunakan.Apabila Anda membuka halaman ini dengan browser yang berbeda,maka daftar kalian yang sudah kalian simpan sebelumnya tidak akan tampil.</div>
+ <div class="alert-actions">
+<a class="clear-book" href="#"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 19V7H16V19C16 20.1 15.1 21 14 21H6C4.9 21 4 20.1 4 19M6 9V19H14V9H6M13.5 4H17V6H3V4H6.5L7.5 3H12.5L13.5 4M19 17V15H21V17H19M19 13V7H21V13H19Z" fill="#fff"></path></svg>Clear All book</a>   
+    </div>
+  </div>
+</div>
+<div class="popup-bookmark" style="display: none;">
+  <div class="header-bookmark">
+    <div class="image-bookmark">
+      <svg aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewbox="0 0 24 24">
+                <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg></div>
+    <div class="content-bookmark">
+       <span class="title-bookmark">Remove All Bookmark</span>
+       <p class="message-bookmark">Apakah Anda yakin ingin menghapus semua bookmark Anda? Semua data bookmark Anda akan dihapus secara permanen. Tindakan ini tidak bisa dibatalkan.</p>
+       <div class="timer"> 
+    Waktu Tersisa: <span></span>Detik.
+  <p>Sampai Terhapus Automatis</p></div>
+    </div>
+    
+     <div class="actions-bookmark">
+       <button class="confirm-delete" type="button">Remove bookmark</button>
+       <button class="cancel-delete" type="button">Cancel delete</button>
+    </div>
+  </div>
+  </div>
+
+<div class="showBookmark"/>
+<script>
+var bookmark = (function(){
+  list = [];
+
+  // Event Saving to Local Storage
+  function setBookmark(){
+    localStorage.setItem('bookmark', JSON.stringify(list));
+  }
+
+  function loadBookmark() {
+    list = JSON.parse(localStorage.getItem('bookmark'));
+  }
+
+  if (localStorage.getItem("bookmark") != null) {
+    loadBookmark();
+  } else {   
+  }
+
+  obj = {};
+  // Clear Bookmark
+  obj.clearALL = function() {
+    list = [];
+    setBookmark();
+  }
+  // Remove Bookmark    
+  obj.removeThisItem = function(id) {
+    for(var item in list) {
+      if(list[item].id === id) {
+        list.splice(item, 1);
+        break;
+      }
+    }
+    setBookmark();
+  }
+  return obj;
+})();
+
+function displayIt(){
+  var getData = JSON.parse(localStorage.getItem('bookmark'));
+  var structure = '';
+  
+  if (getData.length === 0) {
+    structure = '<span style="display: grid;place-items: center;font-size: 18px;color: #888;width: clamp(330px,800px,100%);"><svg style="width: 80px;height: 80px;fill: #888;margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book-open-page-variant-outline</title><path d="M19 1L14 6V17L19 12.5V1M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 20 6.5 20C8.45 20 10.55 20.4 12 21.5C13.35 20.65 15.8 20 17.5 20C19.15 20 20.85 20.3 22.25 21.05C22.35 21.1 22.4 21.1 22.5 21.1C22.75 21.1 23 20.85 23 20.6V6C22.4 5.55 21.75 5.25 21 5M10 18.41C8.75 18.09 7.5 18 6.5 18C5.44 18 4.18 18.19 3 18.5V7.13C3.91 6.73 5.14 6.5 6.5 6.5C7.86 6.5 9.09 6.73 10 7.13V18.41Z" /></svg>Tidak ada Novel atau Manga yang kamu bookmark</span>';
+  } else {
+    for(var i in getData){
+      structure += '<article class="box" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">'
+        +  '<div id="'+getData[i].id+'" class="bsx">'
+        +  '<a href="'+getData[i].link+'" itemprop="url" title="'+getData[i].name+'">'
+        +  '<div class="limit"><div class="typez '+getData[i].type+'">'+getData[i].type+'</div>'
+        +  '<div class="ply"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M14.5 2H9l-.35.15l-.65.64l-.65-.64L7 2H1.5l-.5.5v10l.5.5h5.29l.86.85h.7l.86-.85h5.29l.5-.5v-10l-.5-.5zm-7 10.32l-.18-.17L7 12H2V3h4.79l.74.74l-.03 8.58zM14 12H9l-.35.15l-.14.13V3.7l.7-.7H14v9zM6 5H3v1h3V5zm0 4H3v1h3V9zM3 7h3v1H3V7zm10-2h-3v1h3V5zm-3 2h3v1h-3V7zm0 2h3v1h-3V9z" clip-rule="evenodd"/></svg></div>'
+        +  '<div class="bt"><span class="epx">'+getData[i].status+'</span></div>'
+        +  '<img src="'+getData[i].img+'" loading="lazy" itemprop="image" title="'+getData[i].name+'" alt="'+getData[i].name+'" onerror="this.onerror=null;this.src=\'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8o8jlwaO1aAXDzVCsLhkMLIwRzAzuoMO3235-3NJ2wfejkM5elc6WzFoeHxUsrHhpbNb5U4QOyW-4MmkDPLsMrd7GxcTbNU6q4yMLraOF0Kp97Z4F4RHsshFp6iW3TjKPAnjhIcCpTR9nQHpFNKu-8pFej7qxHPwKDyVzYlJt9SEa6VyKCO0fot_O0Q/s449/No-Image-Placeholder.svg.png\'"></div>'
+        +  '<div class="tt oh">'+getData[i].name+'<h2 itemprop="headline">'+getData[i].name+'</h2></div></a></div>'
+        +  '<div class="btnRemove" data-id="'+getData[i].id+'">Remove</div></article>';
+    }
+  }
+  
+  $('.showBookmark').html(structure);
+}
+
+$('.clearAll').click(function(){
+  bookmark.clearALL();
+  displayIt();
+});
+
+$('.showBookmark').on("click", ".btnRemove", function(event) {
+  bookmark.removeThisItem($(this).data('id'));
+  displayIt();
+});
+
+displayIt();
+</script>
+
+<script>
+  const clearButton = document.querySelector('.clear-book');
+  const popup = document.querySelector('.popup-bookmark');
+  const confirmButton = document.querySelector('.confirm-delete');
+  const cancelButton = document.querySelector('.cancel-delete');
+  const timerElement = document.querySelector('.timer span');
+  let countdownIntervalId;
+
+  clearButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    popup.style.display = 'block';
+    startCountdown();
+  });
+
+  confirmButton.addEventListener('click', function() {
+    clearTimeout(countdownIntervalId);
+    popup.style.display = 'none';
+    // delete all bookmarks
+    bookmark.clearALL();
+    displayIt();
+  });
+
+  cancelButton.addEventListener('click', function() {
+    clearTimeout(countdownIntervalId);
+    popup.style.display = 'none';
+  });
+
+  function startCountdown() {
+    const duration = 60; // in seconds
+    let timeLeft = duration;
+
+    countdownIntervalId = setInterval(function() {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+
+      if (timeLeft === 0) {
+        clearTimeout(countdownIntervalId);
+        // delete all bookmarks
+        bookmark.clearALL();
+        displayIt();
+        popup.style.display = 'none';
+      }
+    }, 1000);
+  }
+
+</script>

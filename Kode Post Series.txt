@@ -1,0 +1,79 @@
+<!--Sinopsis-->
+  <h1 class='jcenter'>Sinopsis</h1>
+  <div id='synopsis' class="sinopsis">
+<p>Aku, Mukouda Tsuyoshi, terjebak dalam lingkaran pemanggilan ke dunia lain di mana keterampilan pedang dan sihir menjadi hal biasa.
+</p><p>
+Namun, ketika pemanggil merapalkan ‘Penilaian Status’ pada kami, tiga orang lain yang dipanggil bersamaku memiliki [Pahlawan dari Dunia Lain] di kotak job, sedangkan aku adalah [Pria Acak yang terbawa dalam Mantra Pemanggilan].</p>
+<p>
+Adapun ‘Skill Set’ kami, ketiga Pahlawan memiliki keterampilan yang terdengar keterlaluan bergulir setelah nama mereka seperti [Teknik Pedang Suci], [Teknik Tombak Suci] dan [Sihir Suci].
+Sebenarnya, aku juga punya skill lho? Satu keterampilanku disebut… [Net Super]… </p>
+<p>
+Karena itu jelas bukan skill tempur, otomatis aku diperlakukan seperti sampah.</p>
+<p>
+Selain itu, Raja negara yang memanggil kami terlihat sangat mencurigakan.
+</p><p>
+Sebagai pembaca lightnovel veteran, aku bisa membaca suasana dengan cukup baik untuk sampai pada kesimpulan bahwa ‘Ini adalah dunia yang buruk untuk didatangi’.
+</p><p>
+Dengan demikian, telah diputuskan. Apapun yang terjadi, aku harus keluar dari kastil ini secepat mungkin dan melarikan diri dari negara busuk ini!</p>
+  </div>
+
+
+<!--[ Thumbnail ]-->
+Letakan Gambar cover series disini
+
+
+<!--[ Extra information ]-->
+<div id="extra-info">  
+
+<details class="y6x11p">  
+<summary class="stext">Associated Names</summary>
+  <p class="dth">Food Travel in the Other World with Ridiculous Ability</p>
+  </details>  
+  
+<div class="y6x11p"><span class="stext">Author</span>
+<span class="dth">Eguchi Ren</span></div>
+  
+<div class="y6x11p"><span class="stext">Volume</span>
+<span class="dth">1-?</span></div>
+  
+<div class="y6x11p"><span class="stext">Published</span>
+<span class="dth">2016</span></div>
+  
+<details class="y6x11p">  
+<summary class="stext">Spoiler</summary>
+ <div class="sinopsis"> 
+   <div class="dth">
+     masukan spoiler
+  </div>
+</div>
+</details>
+    
+<details class="y6x11p">  
+<summary class="stext">Tags</summary>
+  <p class="dth">
+   <b>Tags</b>
+    Adapted to Anime, Adaped to Manga, Beast tamer
+  </p>
+  </details>  
+  
+</div>
+<!--[ Chapters List ]-->
+<div id="listItem">
+  <div class="list-judul">
+  <h3 class="post-title">Judul Series</h3>
+  </div>
+<div class="searcch">
+<input id="searchchapter" onkeyup="searchList()" placeholder="Search by Chapter Ex: 99" type="text" />
+</div> 
+<div id="latest">
+   <script>
+   var outputDiv = 'latest',
+   label = 'Tondemo Skill de Isekai Hourou Meshi',
+   sortby = 'date';
+   runEpList();
+    </script> 
+  </div> 
+<div class="loading-overlay ldk" id="loadingOverlay2">
+<div class="spinner"></div>
+   </div>   
+</div>

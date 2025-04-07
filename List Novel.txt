@@ -1,0 +1,300 @@
+<style>
+.abjad-c-alfabed,.abjad-alfabet,#abjad-filted a{
+   --bg-abjad:#cccccc4f;
+   --color-abjad: #222;
+}
+.dark-mode .abjad-c-alfabed,.dark-mode .abjad-alfabet,.dark-mode  #abjad-filted a{
+   --bg-abjad:#cccccc4f;
+   --color-abjad:#f1f1f1;
+}
+#abjad-filted{
+    max-width: 1060px;
+    margin: 10px 10px 10px 10px;
+    padding-top: 25px;
+}
+#abjad-filted {display:flex;flex-wrap:wrap;text-align: center;}
+div#abjad-filted a {
+    padding: 5px;
+    background: var(--bg-abjad);
+    color: var(--color-abjad);
+    border-radius: 5px;
+    margin: 5px;
+    height: 35px;
+    width: 35px;
+}
+a.abjad-alfabet {
+    color:var(--color-abjad);}
+.abjad-c-alfabed{
+   /* margin-left:15px;*/
+    font-size: 16px;
+    font-weight: 700;
+    padding: 6px 15px;
+    border-radius: 8px;
+    background:var(--bg-abjad);
+}
+ 
+ul.list-post {
+    margin: auto;
+    padding: 30px 10px 0 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+ --ukuran-jdl-dan-label:203px;
+}
+  
+ul.list-post li {
+    position: relative;
+    margin:10px 0;
+    width: 330px;
+    height: 180px;
+    padding:0;
+    list-style: none;
+}
+ ul.list-post img {
+    height: 179px;
+    width: 128px;
+}
+ul.list-post a:nth-child(2) {
+    overflow-x: auto;
+    position: absolute;
+    right: 0;  
+    background: #cccccc4f;
+    color: inherit;
+    height: 60px;
+    padding: 5px;
+    width:var(--ukuran-jdl-dan-label);
+    word-break: break-word;
+    font-size: 12px;
+}
+  
+  ul.list-post a::-webkit-scrollbar {
+  display: none;
+}
+  
+
+  ul.list-post a  {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+  ul.list-post li .post-date {
+    display: block;
+    bottom: 60px;
+    right: 5px;
+    padding: 5px;
+    font-size: 12px;
+    position: absolute;
+}
+  ul.list-post li .post-labels {
+    right:0;
+    position: absolute;
+    bottom:0;
+    text-align: end;
+    align-items: flex-end;
+    background: #cccccc4f;
+    color:inherit;
+    width:var(--ukuran-jdl-dan-label);
+    height: 50px;
+    padding: 2px;
+    font-size: 10px;
+    flex-wrap: wrap;
+}
+span.lbl {
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #f9f9f9;
+    background-color: #a20a0a;
+    display: inline-block;
+    margin-block: 1px;
+}
+  span.lbl:nth-child(2) {
+    color:#f9f9f9;
+    background-color:#817eff;
+}
+   span.lbl:nth-child(3) {
+    color:#f9f9f9;
+    background-color:#2f303e;
+}
+   span.lbl:nth-child(4) {
+    color:#f9f9f9;
+    background-color:#06a017;
+}
+</style>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+function Index_anilist(a) {
+  this.abjad = {};
+  this.overkeys = [];
+  this.grab = function () {
+    var g = a.feed.entry;
+    var c = g.length;
+    for (var d = 0; d < c; d++) {
+      if (d == c) {
+        break;
+      }
+      var f = g[d];
+      var h = f.title.$t;
+      var i = "";
+      for (var b = 0; b < f.link.length; b++) {
+        if (f.link[b].rel == "alternate") {
+          i = f.link[b].href;
+        }
+      }
+      var e = h.substr(0, 1).toLowerCase();
+      var j = {
+        title: h,
+        linkpost: i,
+        date: f.published.$t,
+      thumbnail: f.media$thumbnail ? f.media$thumbnail.url.replace('s72-c', 'w135-h175') : "",
+        labels: f.category ? f.category.map(function(category) { return category.term; }) : []
+      };
+      if (typeof this.abjad[e] == "undefined") {
+        this.abjad[e] = [j];
+      } else {
+        if (typeof this.abjad[e] == "object") {
+          this.abjad[e].push(j);
+        }
+      }
+    }
+  };
+  this.filter = function () {
+    for (var b in this.abjad) {
+      this.overkeys.push(b);
+      this.overkeys.sort();
+    }
+  };
+  this.buildingscripts = function () {
+    for (var c in this.overkeys) {
+      var j = this.overkeys[c];
+      var i = j.toUpperCase();
+      var e = this.abjad[j];
+      var g = [];
+      var h = [];
+      document.write('<hr/><br/><span class="abjad-c-alfabed"><a class="abjad-alfabet" name=' + i + ">" + i + "</a></span><br/>");
+      document.write('<ul class="list-post">');
+      for (var d = 0; d < e.length; d++) {
+        g.push(e[d].title);
+        g.sort();
+      }
+      for (var d = 0; d < e.length; d++) {
+        var k = g[d];
+        var f = "";
+        var thumbnail = "";
+        var postDate = "";
+        var labels = [];
+        for (var b = 0; b < e.length; b++) {
+          if (e[b].title == k) {
+            f = e[b].linkpost;
+            thumbnail = e[b].thumbnail;
+            postDate = e[b].date;
+            labels = e[b].labels;
+          }
+        }
+        
+     document.write('<li>');
+    if (thumbnail !== "") {
+    document.write('<a href="' + f + '"><img class="post-thumbnail" src="' + thumbnail + '" alt="' + k + '"></a>');
+       } else{ 
+     document.write('<a href="' + f + '"><img class="post-thumbnail" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8o8jlwaO1aAXDzVCsLhkMLIwRzAzuoMO3235-3NJ2wfejkM5elc6WzFoeHxUsrHhpbNb5U4QOyW-4MmkDPLsMrd7GxcTbNU6q4yMLraOF0Kp97Z4F4RHsshFp6iW3TjKPAnjhIcCpTR9nQHpFNKu-8pFej7qxHPwKDyVzYlJt9SEa6VyKCO0fot_O0Q/s449/No-Image-Placeholder.svg.webp" alt="' + k + '"></a>');
+    }
+          document.write('<a href="' + f + '">' + k + '</a>');
+  
+   if (labels.length > 0) {
+          var importantLabels = labels.filter(function(label) {
+            return label === "Novel"
+|| label === "New"  
+|| label === "Ongoing" 
+|| label === "Coming Soon" 
+|| label === "Hiatus" 
+|| label === "Dropped" 
+|| label === "Drop" 
+|| label === "Delay" 
+|| label === "Cancelled" 
+|| label === "Completed" 
+|| label === "Manhwa" 
+|| label === "Manghua" 
+|| label === "Manga" 
+|| label === "Light Novel (JP)" 
+|| label === "LN" 
+|| label === "WN" 
+|| label === "Doujinshi" 
+|| label === "Web Novel (JP)" 
+|| label === "Web Novel (KR)"
+|| label === "Web Novel (CN)"  
+|| label === "Jepang" 
+|| label === "Korea" 
+|| label === "China"
+|| label === "KR" 
+|| label === "CN"
+|| label === "JP";
+          });
+          var otherLabels = labels.filter(function(label) {
+   return label !== "Novel" 
+&& label !== "New" 
+&& label !== "Coming Soon" 
+&& label !== "Dropped" 
+&& label !== "Drop" 
+&& label !== "Hiatus" 
+&& label !== "Delay" 
+&& label !== "Cancelled" 
+&& label !== "Completed" 
+&& label !== "Ongoing"
+&& label !== "Manghua" 
+&& label !== "Manhwa" 
+&& label !== "Manga" 
+&& label !== "WN" 
+&& label !== "LN" 
+&& label !== "Doujinshi" 
+&& label !== "Light Novel (JP)" 
+&& label !== "Web Novel (JP)" 
+&& label !== "Web Novel (KR)"
+&& label !== "Web Novel (CN)"  
+&& label !== "Jepang"
+&& label !== "Korea"
+&& label !== "China"
+&& label !== "JP"
+&& label !== "KR"
+&& label !== "CN";
+          });
+          var displayedLabels = otherLabels.slice(0, 2).concat(importantLabels.slice(0, 6 - importantLabels.length));
+     document.write('<span class="post-labels">' + '<span class="lbl">' + displayedLabels.join('</span>  <span class="lbl">') + '</span>' + '</span>');
+        }
+   document.write('<span class="post-date">' + formatDate(postDate) + '</span>');	
+        document.write("</li>");
+      }
+      document.write("</ul>");
+    }
+  };
+  this.run = function () {
+    this.grab();
+    this.filter();
+    this.buildingscripts();
+  };
+}
+function show_anilist(b, startIndex) {
+  var startIndex = startIndex || 1;
+  var a = new Index_anilist(b);
+  a.run();
+
+  var nextPageStartIndex = startIndex + 500;
+  var nextPageScript = document.createElement('script');
+  nextPageScript.src = '/feeds/posts/default/-/Series?orderby=published&alt=json-in-script&callback=show_anilist&start-index=' + nextPageStartIndex + '&max-results=500';
+  document.body.appendChild(nextPageScript);
+}
+
+function formatDate(dateString) {
+  var options = { day: 'numeric', month: 'long', year: 'numeric' };
+  var date = new Date(dateString);
+  return date.toLocaleDateString('id-ID', options);
+}
+
+document.write('<div id="abjad-filted">');
+document.write('<a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a><a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a><a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a><a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a><a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a><a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a><a href="#Y">Y</a><a href="#Z">Z</a><div class="clear"></div>');
+document.write("</div>");
+
+// First request with max-results=500
+document.write('<script src="/feeds/posts/default/-/Series?orderby=published&alt=json-in-script&callback=show_anilist&start-index=1&max-results=500"></' + 'script>');
+/*]]>*/
+</script>
